@@ -1,0 +1,65 @@
+﻿@model triptravel.Models.Siniflar.BlogYorum
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_TestLayout.cshtml";
+}
+
+<!DOCTYPE HTML>
+<html>
+<head>
+    <link href="~/web2/css/bootstrap.css" rel='stylesheet' type='text/css' />
+    <link href="~/web2/css/style.css" rel='stylesheet' type='text/css' />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+</head>
+<body>
+    <div class="single">
+        <div class="container">
+            <!-- Main Blog Content -->
+            <div class="col-md-8 single-main">
+                @foreach (var x in Model.Deger1)
+                {
+                    <div class="single-grid" style="margin-bottom: 30px; background-color: #f9f9f9; border-radius: 10px; box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); padding: 20px;">
+                        <img src="@x.BlogImage" alt="@x.Baslik" style="width: 100%; height: auto; margin-bottom: 20px; border-radius: 10px;" />
+                        <h2 style="color: #1F2937; font-size: 24px; font-weight: bold; margin-bottom: 10px;">@x.Baslik</h2>
+                        <p style="color: #4A5568; font-size: 16px; line-height: 1.8;">@Html.Raw(HttpUtility.HtmlDecode(x.Aciklama))</p>
+                        <a href="/Blog/BlogDetay/@x.ID" style="text-decoration: none; color: #007bff; font-weight: bold;">Devamını Oku</a>
+                    </div>
+                }
+            </div>
+
+            <!-- Sidebar Content -->
+            <div class="col-md-4 side-content">
+                <div class="recent" style="margin-bottom: 30px;">
+                    <h3 style="color: #1F2937; font-size: 20px; font-weight: bold;">Son İncelenen Araçlar</h3>
+                    <ul style="list-style-type: none; padding: 0;">
+                        @foreach (var y in Model.Deger3)
+                        {
+                            <li style="margin-bottom: 15px; display: flex; align-items: center;">
+                                <img src="@y.BlogImage" alt="@y.Baslik" style="width: 50px; height: 50px; object-fit: cover; margin-right: 10px; border-radius: 5px;" />
+                                <a href="/Blog/BlogDetay/@y.ID" style="text-decoration: none; color: #333; font-weight: bold;">@y.Baslik</a>
+                            </li>
+                        }
+                    </ul>
+                </div>
+
+                <div class="all-blogs" style="margin-top: 30px;">
+                    <h3 style="color: #1F2937; font-size: 20px; font-weight: bold;">Tüm İncelenenler</h3>
+                    <div style="height: 300px; overflow-y: auto; border: 1px solid #ccc; padding: 10px; border-radius: 10px;">
+                        <ul style="list-style-type: none; padding: 0;">
+                            @foreach (var blog in Model.Deger1)
+                            {
+                                <li style="margin-bottom: 10px;">
+                                    <a href="/Blog/BlogDetay/@blog.ID" style="text-decoration: none; color: #333; font-size: 14px;">@blog.Baslik <span style="color: #666; font-size: 12px;">(@blog.Tarih.ToString("dd.MM.yyyy"))</span></a>
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</body>
+</html>

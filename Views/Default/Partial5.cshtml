@@ -1,0 +1,65 @@
+﻿@using triptravel.Models.Siniflar
+@model List<Blog>
+<div class="box1-left">
+    @foreach (var x in Model)
+    {
+        <div class="blog-item">
+            <div class="blog-image">
+                <a href="/Blog/BlogDetay/@x.ID">
+                    <img src="@x.BlogImage" alt="@x.Baslik" />
+                </a>
+            </div>
+            <div class="blog-description">
+                <p>@Html.Raw(x.Aciklama.Substring(0, 80))...</p>
+            </div>
+        </div>
+    }
+</div>
+
+<style>
+    .box1-left {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        max-width: 800px;
+        margin: 20px auto;
+        padding: 20px;
+        background-color: #f9f9f9;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .blog-item {
+        display: flex;
+        align-items: center;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        padding: 10px;
+        transition: transform 0.2s;
+    }
+
+        .blog-item:hover {
+            transform: scale(1.02);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+        }
+
+    .blog-image img {
+        width: 120px;
+        height: 80px;
+        object-fit: cover;
+        border-radius: 5px;
+    }
+
+    .blog-description {
+        margin-left: 15px;
+        font-size: 16px;
+        color: #4A5568;
+    }
+
+        .blog-description p {
+            margin: 0;
+            line-height: 1.6;
+        }
+</style>

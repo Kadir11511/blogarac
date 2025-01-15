@@ -1,0 +1,156 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Otonom Araç Kiralama Platformu</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <style>
+        /* Genel Stiller */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+
+        /* Header */
+        .header {
+            background-color: #1F2937;
+            color: white;
+            padding: 20px 0;
+        }
+
+            .header .wrap {
+                max-width: 1200px;
+                margin: 0 auto;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            .header .logo {
+                display: flex;
+                align-items: center;
+                gap: 15px;
+            }
+
+                .header .logo img {
+                    max-height: 50px;
+                }
+
+            .header .con-right {
+                text-align: right;
+                display: flex;
+                flex-direction: column;
+                align-items: flex-end;
+                gap: 5px;
+            }
+
+                .header .con-right p {
+                    margin: 0;
+                    font-size: 14px;
+                    display: flex;
+                    align-items: center;
+                    gap: 8px;
+                }
+
+                .header .con-right .icon {
+                    width: 16px;
+                    height: 16px;
+                }
+
+        /* Navigation Bar */
+        .header-bottom {
+            background-color: #3F4E62;
+            padding: 10px 0;
+        }
+
+            .header-bottom ul {
+                list-style: none;
+                display: flex;
+                justify-content: center;
+                margin: 0;
+                padding: 0;
+                gap: 30px;
+            }
+
+                .header-bottom ul li a {
+                    color: white;
+                    text-decoration: none;
+                    font-size: 16px;
+                    padding: 5px 10px;
+                }
+
+                    .header-bottom ul li a:hover,
+                    .header-bottom ul li a.active {
+                        background-color: #1F2937;
+                        border-radius: 5px;
+                    }
+
+        /* Footer */
+        .footer-bottom {
+            background-color: #1F2937;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            font-size: 14px;
+        }
+
+            .footer-bottom p {
+                margin: 0;
+            }
+
+        /* Content Placeholder */
+        .content {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        <div class="wrap">
+            <div class="logo">
+                <img src="~/web/images/download.png" alt="Otonom Araç Kiralama">
+                <h1>Araç Blog </h1>
+            </div>
+            <div class="con-right">
+                <p><img class="icon" src="~/web/images/contact-icon1.png" alt="Phone Icon"> İletişim : +90 555 123 45 67</p>
+                <p><img class="icon" src="~/web/images/email-icon.png" alt="Email Icon"> Email: info@aracblog.com</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation Bar -->
+    <div class="header-bottom">
+        <div class="wrap">
+            <ul id="nav">
+                <li><a href="/Default/Index">Ana Sayfa</a></li>
+                <li><a href="/About/Index">Hakkımızda</a></li>
+                <li><a href="/Blog/Index">Araç Modelleri</a></li>
+                <li><a href="/iletisim/Index">İletişim</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Content Placeholder -->
+    <div class="content">
+        @RenderBody()
+    </div>
+
+    <!-- Footer -->
+    <div class="footer-bottom">
+        <p>&copy; 2024 Araç Blog Sayfamız. Tüm Hakları Saklıdır.</p>
+    </div>
+</body>
+</html>

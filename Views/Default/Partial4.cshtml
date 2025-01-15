@@ -1,0 +1,79 @@
+﻿@using triptravel.Models.Siniflar
+@model List<Blog>
+<div class="padding1">
+    <h4 class="section-title">En Beğendiğim Araçlar</h4>
+    <div class="box-left">
+        @foreach (var x in Model)
+        {
+            <div class="blog-item">
+                <div class="blog-image">
+                    <a href="/Blog/BlogDetay/@x.ID">
+                        <img src="@x.BlogImage" alt="@x.Baslik" />
+                    </a>
+                </div>
+                <div class="blog-description">
+                    <p>@Html.Raw(x.Aciklama.Substring(0, 80))...</p>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+<style>
+    .padding1 {
+        padding: 20px;
+        max-width: 900px;
+        margin: 20px auto;
+        background-color: #f9f9f9;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .section-title {
+        font-size: 24px;
+        color: #1F2937;
+        font-weight: bold;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .box-left {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .blog-item {
+        display: flex;
+        align-items: center;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        padding: 10px;
+        transition: transform 0.2s;
+    }
+
+        .blog-item:hover {
+            transform: scale(1.02);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+        }
+
+    .blog-image img {
+        width: 120px;
+        height: 80px;
+        object-fit: cover;
+        border-radius: 5px;
+    }
+
+    .blog-description {
+        margin-left: 15px;
+        font-size: 16px;
+        color: #4A5568;
+    }
+
+        .blog-description p {
+            margin: 0;
+            line-height: 1.6;
+        }
+</style>

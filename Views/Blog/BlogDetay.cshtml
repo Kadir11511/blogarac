@@ -1,0 +1,264 @@
+﻿@model triptravel.Models.Siniflar.BlogYorum
+@{
+    ViewBag.Title = "BlogDetay";
+    Layout = "~/Views/Shared/_TestLayout.cshtml";
+}
+
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Personal Blog | Blog Detay</title>
+    <style>
+        /* Genel Stil Ayarları */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            display: flex;
+            gap: 20px;
+        }
+
+        .blog-content {
+            flex: 2;
+            background: #fff;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .blog-header img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+
+        .blog-header h1 {
+            font-size: 28px;
+            color: #222;
+            margin-bottom: 20px;
+        }
+
+        .blog-body p {
+            line-height: 1.8;
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        .blog-video iframe {
+            width: 100%;
+            height: 350px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+
+        .comments-section {
+            margin-top: 30px;
+        }
+
+            .comments-section h2 {
+                font-size: 24px;
+                margin-bottom: 15px;
+                border-bottom: 2px solid #ddd;
+                padding-bottom: 5px;
+            }
+
+        .comment {
+            background: #f9f9f9;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            display: flex;
+            gap: 10px;
+        }
+
+            .comment img {
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
+            }
+
+        .comment-body p {
+            margin: 0;
+            line-height: 1.5;
+        }
+
+        .add-comment {
+            margin-top: 30px;
+        }
+
+            .add-comment h3 {
+                font-size: 20px;
+                margin-bottom: 15px;
+                color: #007bff;
+            }
+
+            .add-comment form {
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .add-comment input,
+            .add-comment textarea {
+                padding: 10px;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+                font-size: 14px;
+                width: 100%;
+            }
+
+                .add-comment input[type="submit"] {
+                    background: #007bff;
+                    color: white;
+                    border: none;
+                    cursor: pointer;
+                    font-size: 16px;
+                    transition: background 0.3s;
+                }
+
+                    .add-comment input[type="submit"]:hover {
+                        background: #0056b3;
+                    }
+
+        .sidebar {
+            flex: 1;
+            background: #fff;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+            .sidebar h3 {
+                font-size: 18px;
+                margin-bottom: 15px;
+                border-bottom: 2px solid #ddd;
+                padding-bottom: 5px;
+            }
+
+            .sidebar ul {
+                list-style: none;
+                padding: 0;
+                margin: 0;
+            }
+
+                .sidebar ul li {
+                    margin-bottom: 10px;
+                    display: flex;
+                    gap: 10px;
+                }
+
+                    .sidebar ul li img {
+                        width: 50px;
+                        height: 50px;
+                        border-radius: 5px;
+                    }
+
+                    .sidebar ul li a {
+                        text-decoration: none;
+                        color: #007bff;
+                        font-size: 14px;
+                        font-weight: bold;
+                    }
+
+        .share-section {
+            margin-top: 30px;
+            text-align: center;
+        }
+
+            .share-section a {
+                display: inline-block;
+                background: #007bff;
+                color: #fff;
+                padding: 10px 20px;
+                border-radius: 5px;
+                margin: 5px;
+                text-decoration: none;
+                font-size: 14px;
+            }
+
+                .share-section a:hover {
+                    opacity: 0.8;
+                }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Blog İçerik Alanı -->
+        <div class="blog-content">
+            @foreach (var x in Model.Deger1)
+            {
+                <div class="blog-header">
+                    <img src="@x.BlogImage" alt="@x.Baslik">
+                    <h1>@x.Baslik</h1>
+                </div>
+                <div class="blog-body">
+                    <p>@Html.Raw(HttpUtility.HtmlDecode(x.Aciklama))</p>
+                </div>
+
+                if (!string.IsNullOrEmpty(Model.VideoUrl))
+                {
+                    <div class="blog-video">
+                        <iframe src="@Model.VideoUrl" frameborder="0" allowfullscreen></iframe>
+                    </div>
+                }
+            }
+
+            <!-- Yorumlar Bölümü -->
+            <div class="comments-section">
+                <h2>Yorumlar</h2>
+                @foreach (var y in Model.Deger2)
+                {
+                    <div class="comment">
+                        <img src="~/web2/images/avatar.png" alt="Avatar">
+                        <div class="comment-body">
+                            <p><strong>@y.KullaniciAdi</strong>: @y.Yorum</p>
+                        </div>
+                    </div>
+                }
+            </div>
+
+            <!-- Yorum Yap -->
+            <div class="add-comment">
+                <h3>Bir Yorum Ekleyin</h3>
+                <form method="post" action="/Blog/YorumYap">
+                    <input type="hidden" name="Blogid" value="@ViewBag.deger" />
+                    <input type="text" placeholder="Kullanıcı Adı" name="KullaniciAdi" required />
+                    <input type="email" placeholder="Mail" name="mail" required />
+                    <textarea placeholder="Yorum" name="Yorum" required></textarea>
+                    <input type="submit" value="Gönder" />
+                </form>
+            </div>
+        </div>
+
+        <!-- Sağ Panel -->
+        <div class="sidebar">
+            <div class="recent-posts">
+                <h3>Son Gönderiler</h3>
+                <ul>
+                    @foreach (var y in Model.Deger4)
+                    {
+                        <li>
+                            <img src="@y.BlogImage" alt="@y.Baslik">
+                            <a href="/Blog/BlogDetay/@y.ID">@y.Baslik</a>
+                        </li>
+                    }
+                </ul>
+            </div>
+            <div class="share-section">
+                <h3>Bu Bloğu Paylaş</h3>
+                <a href="https://twitter.com/intent/tweet?text=Check out this blog!&url=@Request.Url" target="_blank">Twitter</a>
+                <a href="https://www.facebook.com/sharer/sharer.php?u=@Request.Url" target="_blank">Facebook</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

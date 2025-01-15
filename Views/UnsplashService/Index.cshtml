@@ -1,0 +1,23 @@
+﻿@{
+    ViewBag.Title = "Araç Görselleri";
+    Layout = "~/Views/Shared/_TestLayout.cshtml"; // Layout'unu kullanmaya devam ediyoruz
+}
+
+<h1>Araç Görselleri</h1>
+<div class="image-gallery">
+    @if (ViewBag.CarImagesJson != null)
+    {
+        var carImages = Newtonsoft.Json.JsonConvert.DeserializeObject<dynamic>(ViewBag.CarImagesJson);
+
+        foreach (var image in carImages.results)
+        {
+            <div style="margin: 10px; display: inline-block;">
+                <img src="@image.urls.small" alt="@image.alt_description" style="width:200px;height:auto;" />
+            </div>
+        }
+    }
+    else
+    {
+        <p>Görseller yüklenemedi.</p>
+    }
+</div>

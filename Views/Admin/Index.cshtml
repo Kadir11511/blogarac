@@ -1,0 +1,44 @@
+﻿@using triptravel.Models.Siniflar
+@model List<Blog>
+@{
+    ViewBag.Title = "Admin Panel - Araç Listesi";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="admin-header" style="background-color: #1f1f1f; color: #fff; padding: 15px; margin-bottom: 20px;">
+    <h2 style="text-align: center; font-weight: bold;">Admin Paneli</h2>
+    <h3 style="text-align: center; font-weight: bold;">Araç Listesi</h3>
+</div>
+
+<div class="admin-container" style="background-color: #2c2c2c; padding: 20px; border-radius: 10px;">
+    <table class="table" style="color: #fff; background-color: #333; width: 100%; border-radius: 8px; overflow: hidden;">
+        <thead style="background-color: #444;">
+            <tr>
+                <th style="padding: 10px;">ID</th>
+                <th style="padding: 10px;">BAŞLIK</th>
+                <th style="padding: 10px;">SİL</th>
+                <th style="padding: 10px;">GÜNCELLE</th>
+                <th style="padding: 10px;">DETAYLAR</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var x in Model)
+            {
+                <tr style="border-bottom: 1px solid #555;">
+                    <td style="padding: 10px;">@x.ID</td>
+                    <td style="padding: 10px;">@x.Baslik</td>
+                    <td style="padding: 10px;">
+                        <a href="/Admin/BlogSil/@x.ID" class="btn btn-danger" style="background-color: #d9534f; border: none; padding: 5px 10px; border-radius: 5px; color: #fff;" onclick="return confirm('Bu aracı silmek istediğinizden emin misiniz?')">Sil</a>
+                    </td>
+                    <td style="padding: 10px;">
+                        <a href="/Admin/BlogGetir/@x.ID" class="btn btn-dark" style="background-color: #5bc0de; border: none; padding: 5px 10px; border-radius: 5px; color: #fff;">Güncelle</a>
+                    </td>
+                    <td style="padding: 10px;">
+                        <a href="#" class="btn btn-default" style="background-color: #5cb85c; border: none; padding: 5px 10px; border-radius: 5px; color: #fff;">Detaylar</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <a href="/Admin/YeniBlog/" class="btn btn-primary" style="background-color: #0275d8; border: none; padding: 10px 20px; border-radius: 5px; color: #fff; font-weight: bold; display: inline-block; margin-top: 20px;">Yeni Araç</a>
+</div>

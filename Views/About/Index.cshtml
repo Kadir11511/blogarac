@@ -1,0 +1,76 @@
+﻿@using triptravel.Models.Siniflar
+@model List<Hakkimizda>
+@{
+    ViewBag.Title = "About";
+    Layout = "~/Views/Shared/_TestLayout.cshtml";
+}
+
+<div class="content">
+    <div class="wrap">
+        <div class="about">
+            <h3 class="about-title">Hakkımızda</h3>
+            <div class="about-banner">
+                <img src="~/web/images/download.jpeg" alt="Hakkımızda" class="about-image" />
+            </div>
+            <p class="about-text">
+                Geleceğin ulaşımını bugünden keşfedin! Araç Kiralama, yenilikçi ve çevre dostu araçlarıyla sizlere
+                en güvenli ve rahat yolculuk deneyimini sunuyor. Vizyonumuz, modern teknolojiyi herkes için erişilebilir hale
+                getirmek ve sürdürülebilir bir gelecek inşa etmektir.
+            </p>
+            <p class="about-text">
+                En son teknolojiyle donatılmış araçlarımız, her türlü ihtiyaca uygun çözümler sunar. İster iş seyahati
+                ister tatil, otonom araçlarımızla her yolculuk unutulmaz bir deneyime dönüşür.
+            </p>
+        </div>
+    </div>
+</div>
+
+<style>
+    .content {
+        margin: 40px auto;
+        padding: 20px;
+        max-width: 900px;
+        background-color: #f9f9f9;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .wrap {
+        text-align: center;
+    }
+
+    .about {
+        padding: 20px;
+    }
+
+    .about-title {
+        font-size: 32px;
+        color: #1F2937;
+        margin-bottom: 20px;
+        font-weight: 600;
+    }
+
+    .about-banner {
+        margin-bottom: 20px;
+    }
+
+    .about-image {
+        width: 100%;
+        max-height: 400px;
+        object-fit: cover;
+        border-radius: 10px;
+        box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .about-text {
+        font-size: 18px;
+        line-height: 1.8;
+        color: #4A5568;
+        margin-bottom: 20px;
+    }
+
+        .about-text:last-child {
+            margin-bottom: 0;
+        }
+</style>
+
